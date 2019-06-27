@@ -12,5 +12,5 @@ You will also see any lint errors in the console.
 
 ### Node.js
 
-If you have errors starting the app saying it cant find nodejs cli files paste this code into your terminal and it should fix it
+If you have errors starting the app and its saying it cant find nodejs cli files paste this line into your terminal and it should fix it
 `SET PATH=C:\Program Files\Nodejs;%PATH%`
