@@ -7,13 +7,22 @@ class MainContainer extends Component{
         this.state = {
             counter: 0
         }
+        this.counterAdder = this.counterAdder.bind(this);
+    }
+
+     counterAdder() {
+        
+        let prevState = this.state.counter;
+        prevState += 1;
+        let newState = prevState;
+        this.setState({counter: newState})
     }
 
     render(){
         return(
             <>
                 <h2>Hello from MainContainer</h2>
-                <SimpleComponent count = {this.state.counter}/>
+                <SimpleComponent count = {this.state.counter} addMore = {this.counterAdder}/>
             </>
         )
     }
