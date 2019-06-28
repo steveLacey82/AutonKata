@@ -21,7 +21,7 @@ class MainContainer extends Component{
     render(){
         return(
             <>
-                <h2>Hello from MainContainer</h2>
+                <h2>Hello from MainContainerTest</h2>
                 <SimpleComponent count = {this.state.counter} addMore = {this.counterAdder}/>
             </>
         )
