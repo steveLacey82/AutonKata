@@ -8,7 +8,7 @@ const SimpleComponent = (props) => {
         <>
         <div>Hello from SimpleComponent</div>
         <p>{props.count}</p>
-        <button onClick = {props.addMore}>Add MOAR!</button>
+        <button onClick = {props.addMore}>Add!</button>
         </>
     )
 }
