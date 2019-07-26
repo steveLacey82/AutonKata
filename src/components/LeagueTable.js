@@ -15,13 +15,15 @@ const LeagueTable = (props) => {
         <div>
             <h2>Hello From League Table</h2>
             <table>
+                <tbody>
                 <tr>
                     <th>Player 1</th>
                     <th>P1 Score</th>
                     <th>Player 2</th>
                     <th>P2 Score</th>
                 </tr>
-                    {matchNode}            
+                    {matchNode}  
+                </tbody>          
             </table>
         </div>
 

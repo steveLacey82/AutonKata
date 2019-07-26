@@ -47,21 +47,35 @@ class GameForm extends Component {
     // The onchange in the input calls the handleChange function whenever a change happens in the field
     // The onClick in the button calls the handleSubmit function when we click the save button in browser
     render() {
+
+        const playerNode = this.props.players.map((player, index) => {
+            return <option key = {index} value = {player.name}>{player.name}</option>
+        })
+
+
+
+
         return (
             <>
                 <p>Add new Game!</p>
                 <form>
                     <div>
                         <label htmlFor="player1">Player 1</label>
-                        <input type='text' name='player1' onChange={this.handleChange} value={this.state.player1} />
+                        <select name='player1' onChange={this.handleChange} value={this.state.player1}>
+                            <option default>Choose player</option>
+                            {playerNode}
+                        </select>
                     </div>
                     <div>
                         <label htmlFor="p1Score">Player 1 Score</label>
-                        <input type='number' name='p1Score' onChange={this.handleChange} value={this.state.p1Score} />
+                        <input type='number' name='p1Score' onChange={this.handleChange} value={this.state.p1Score}/>
                     </div>
                     <div>
                         <label htmlFor="player2">Player 2</label>
-                        <input type='text' name='player2' onChange={this.handleChange} value={this.state.player2} />
+                        <select name='player2' onChange={this.handleChange} value={this.state.player2} >
+                            <option default >Choose player</option>
+                            {playerNode}
+                        </select>
                     </div>
 
                     <div>
