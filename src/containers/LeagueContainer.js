@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import RecentMatches from '../components/RecentMatches';
 import LeagueTable from '../components/LeagueTable';
 
 class LeagueContainer extends Component {
@@ -7,7 +8,8 @@ class LeagueContainer extends Component {
         return(
             <div>
                 <h1>League Container</h1>
-                <LeagueTable games = {this.props.games}/>
+                <RecentMatches games = {this.props.games}/>
+                <LeagueTable players = {this.props.players}/>
             </div>
             
         )

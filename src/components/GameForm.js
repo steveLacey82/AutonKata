@@ -56,7 +56,7 @@ class GameForm extends Component {
 
 
         return (
-            <>
+            <div>
                 <p>Add new Game!</p>
                 <form>
                     <div>
@@ -86,7 +86,7 @@ class GameForm extends Component {
                         <button onClick={this.handleSubmit}>Save</button>
                     </div>
                 </form>
-            </>
+            </div>
         )
     }
 }

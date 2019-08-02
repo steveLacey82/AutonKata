@@ -10,24 +10,28 @@ class MainContainer extends Component{
             players: [
                 {
                     "name": "Kyle",
+                    "points": 0,
                     "wins": 0,
-                    "draws": 0,
+                    "losses": 0,
                     "matches": []
                 },
                 {
                     "name": "Andy",
+                    "points": 0,
                     "wins": 0,
-                    "draws": 0,
+                    "losses": 0,
                     "matches": []
                 },
                 {
-                    "name": "Declan",
-                    "wins": 0,
-                    "losses": 0,
-                    "matches": [] 
+                     "name": "Declan",
+                     "points": 0,
+                     "wins": 0,
+                     "losses": 0,
+                     "matches": []
                 },
                 {
                     "name": "Adam",
+                    "points": 0,
                     "wins": 0,
                     "losses": 0,
                     "matches": []
@@ -55,18 +59,31 @@ class MainContainer extends Component{
         let player2 = allPlayers.filter((player) => player.name === game.player2);
         if(game.p1Score > game.p2Score){
             player1[0].wins += 1;
-            player1[0].matches.push(game);
-            player2[0].losses +=1;
-            player2[0].matches.push(game);
+            player1[0].points += 2;            
+            if (game.p2Score >= 20) {
+               player2[0].points += 1; 
+            }
+            player2[0].losses += 1;
+            
         } else {
             player2[0].wins += 1;
-            player2[0].matches.push(game);
-            player1[0].losses +=1;
-            player1[0].matches.push(game);
+            player2[0].points += 2;           
+            if (game.p1Score >= 20) {
+                player1[0].points += 1;
+            }
+            player1[0].losses += 1;          
         }
+        player1[0].matches.push(game);
+        player2[0].matches.push(game);
         this.setState({players: allPlayers});
     }
 
+    assignRank(){
+
+    }
+
+
+    // Not in use
     findWithAttr(array, attr, value) {
         for (var i = 0; i < array.length; i += 1) {
             if ((array[i][attr]) === value) {
@@ -81,10 +98,12 @@ class MainContainer extends Component{
             <>
                 <h2>Hello from MainContainerTest</h2>
                 <GameForm newGame = {this.addNewGame} players = {this.state.players}/>
-                <LeagueContainer games = {this.state.games}/>
+                <LeagueContainer games = {this.state.games} players = {this.state.players}/>
             </>
         )
     }
 }
 
 export default MainContainer;
+
+//https://stackoverflow.com/questions/35737274/how-to-rank-objects-by-property
