@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import '../css/Match.css'
 
 const Match = (props) => {
     return(

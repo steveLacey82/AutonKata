@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Player from './Player'
+import '../css/LeagueTable.css'
 
 class LeagueTable extends Component {
     constructor(props){

@@ -1,5 +1,6 @@
 import React from 'react';
 import Match from './Match';
+import '../css/RecentMatches.css'
 
 const RecentMatches = (props) => {
 
