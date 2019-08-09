@@ -13,6 +13,10 @@ const About = (props) => {
             <p>Thinks he's a pheonix</p>
             <h2>Kyle</h2> 
             <p>has a strong backhand</p> 
+            <h2>Chris</h2>
+            <p>has some questionable paddle holding</p>
+            <h2>Calum</h2>
+            <p>Spin Doctor from the East</p>
         </header>
         </>
     )
