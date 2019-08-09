@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import GameForm from '../components/GameForm';
 import LeagueContainer from './LeagueContainer';
+import About from '../components/About';
 
 class MainContainer extends Component{
     constructor(props){
@@ -99,6 +100,7 @@ class MainContainer extends Component{
                 <h2>Hello from MainContainerTest</h2>
                 <GameForm newGame = {this.addNewGame} players = {this.state.players}/>
                 <LeagueContainer games = {this.state.games} players = {this.state.players}/>
+                <About />
             </>
         )
     }
