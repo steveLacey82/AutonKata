@@ -5,24 +5,36 @@ class LeagueTable extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: this.props.players
+            data: this.props.players,
+            sorted: false
         }
         this.compareBy.bind(this);
         this.sortBy.bind(this);
     }
 
     compareBy(key) {
-        return function (a, b) {
-          if (a[key] < b[key]) return -1;
-          if (a[key] > b[key]) return 1;
-          return 0;
-        };
+        if(this.state.sorted){
+            return function (a, b) {
+                if (a[key] > b[key]) return -1;
+                if (a[key] < b[key]) return 1;
+                return 0;
+              }; 
+        } else {
+            return function (a, b) {
+                if (a[key] < b[key]) return -1;
+                if (a[key] > b[key]) return 1;
+                return 0;
+              };
+        }
+
       }
 
     sortBy(key) {
         let arrayCopy = [...this.state.data];
         arrayCopy.sort(this.compareBy(key));
         this.setState({data: arrayCopy});
+        //!this.state.sorted? this.setState({sorted: true}) : this.setState({sorted: false}) 
+        this.setState({sorted: !this.state.sorted});
       }
 
     render(){
@@ -40,7 +52,7 @@ class LeagueTable extends Component {
             <table>
     <tbody>
         <tr>
-            <th>Rank</th>
+            <th onClick={() => this.sortBy('position')}>Rank</th>
             <th onClick={() => this.sortBy('name')}>Player</th>
             <th onClick={() => this.sortBy('wins')}>Wins</th>
             <th onClick={() => this.sortBy('losses')}>Losses</th>

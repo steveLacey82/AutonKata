@@ -10,6 +10,7 @@ class MainContainer extends Component{
             players: [
                 {
                     "name": "Kyle",
+                    "position": 0,
                     "points": 0,
                     "wins": 0,
                     "losses": 0,
@@ -17,6 +18,7 @@ class MainContainer extends Component{
                 },
                 {
                     "name": "Andy",
+                    "position": 0,
                     "points": 0,
                     "wins": 0,
                     "losses": 0,
@@ -24,6 +26,7 @@ class MainContainer extends Component{
                 },
                 {
                      "name": "Declan",
+                     "position": 0,
                      "points": 0,
                      "wins": 0,
                      "losses": 0,
@@ -31,6 +34,7 @@ class MainContainer extends Component{
                 },
                 {
                     "name": "Adam",
+                    "position": 0,
                     "points": 0,
                     "wins": 0,
                     "losses": 0,
@@ -41,6 +45,8 @@ class MainContainer extends Component{
        this.addNewGame = this.addNewGame.bind(this); 
        this.calcuteGameResult = this.calcuteGameResult.bind(this);
        this.findWithAttr = this.findWithAttr.bind(this);
+       this.sortPlayers = this.sortPlayers.bind(this);
+       this.assignRank = this.assignRank.bind(this);
     }
 
     // This function will add the new game from our game form to the games array in our main containers state
@@ -78,8 +84,22 @@ class MainContainer extends Component{
         this.setState({players: allPlayers});
     }
 
-    assignRank(){
+    // Once we have a backend this should post to this should be moved there.
+    sortPlayers(){
+        if (this.state.games.length !== 0) {
+            this.state.players.sort((a, b) => (a.points < b.points) ? 1 : (a.points === b.points) ? ((a.matches.length < b.matches.length) ? 1 : -1) : -1 );
+        }        
+    }
 
+    assignRank(){
+        this.sortPlayers();
+       let playersArr = this.state.players;
+       let pos = 1;
+       playersArr.forEach(player =>{
+           player.position = pos;
+           pos += 1;
+       })
+       
     }
 
 
@@ -99,6 +119,7 @@ class MainContainer extends Component{
                 <h2>Hello from MainContainerTest</h2>
                 <GameForm newGame = {this.addNewGame} players = {this.state.players}/>
                 <LeagueContainer games = {this.state.games} players = {this.state.players}/>
+                <button onClick = {this.assignRank}>Sort</button>
             </>
         )
     }

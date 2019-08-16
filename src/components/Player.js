@@ -4,7 +4,7 @@ const Player = (props) => {
     
     return (
     <>
-    <td>pos</td>
+    <td>{props.player.position}</td>
     <td>{props.player.name}</td>
     <td>{props.player.wins}</td>
     <td>{props.player.losses}</td>

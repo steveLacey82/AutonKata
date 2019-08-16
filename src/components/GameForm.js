@@ -13,22 +13,33 @@ class GameForm extends Component {
         // We have to bind functions so that they can be used
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.findWithAttr = this.findWithAttr.bind(this);
+        this.buildPlayerArray = this.buildPlayerArray.bind(this);
+        this.playerArrayHandler = this.playerArrayHandler.bind(this);
+        this.rebuild = this.rebuild.bind(this);
     }
 
     // This takes a change event on our input field and then finds the relevant key in the state and sets its value to the value of the input field
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
-        })
+        });       
+        this.playerArrayHandler(event);
     }
+
+     findWithAttr(array, attr, value) {
+        for (var i = 0; i < array.length; i += 1) {
+            if ((array[i][attr]) === value) {
+                return i;
+            }
+        }
+        return -1;
+     }
 
     // This handles the button click 
     handleSubmit(event) {
         // This stops the defualt action of buttons which is to post to the browser URL
         event.preventDefault();
-
-        // Just checking that our function is sending data
-        console.log("This is my post", this.state);
 
         // This is a function propped down from our main container we pass it the state from our form and it handles adding it to the games array in our main state
         this.props.newGame(this.state)
@@ -40,6 +51,35 @@ class GameForm extends Component {
             p1Score: '',
             p2Score: ''
         })
+        this.playerArrayHandler();
+    }
+////////////////////////////////////////////
+    buildPlayerArray(){
+        const playerArray = [...this.props.players];
+        return playerArray;
+     }
+
+     rebuild(fire){
+         if (fire === "yes") {
+             return true;
+         } else {
+             return false;
+         }
+     }
+
+    playerArrayHandler(event){
+        if (event) {
+           const playerArray = this.buildPlayerArray();
+           let i = this.findWithAttr(playerArray, 'name', event.target.value);
+           console.log(i);
+           playerArray.splice(i, 1)
+           console.log(playerArray);
+           this.rebuild("yes")
+           return playerArray;
+        } else {
+            const playerArray = this.buildPlayerArray();
+            return playerArray;
+        }
     }
 
     // You cannot comment inside the render as anything in there is rendered on the page
@@ -47,12 +87,19 @@ class GameForm extends Component {
     // The onchange in the input calls the handleChange function whenever a change happens in the field
     // The onClick in the button calls the handleSubmit function when we click the save button in browser
     render() {
+        
 
-        const playerNode = this.props.players.map((player, index) => {
+        const playersArr = this.playerArrayHandler();
+
+        const removePlayerName = (name) => {
+            let i = this.findWithAttr(playersArr, 'name', name);
+            console.log(i);
+            playersArr.splice(i, 1)
+        }
+
+        const playerNode = playersArr.map((player, index) => {
             return <option key = {index} value = {player.name}>{player.name}</option>
         })
-
-
 
 
         return (
