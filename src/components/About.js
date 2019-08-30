@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-const About = (props) => {
+const About = () => {
     return (
         <>
         <header>
